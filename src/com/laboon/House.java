@@ -13,6 +13,11 @@ public class House {
 		_rooms = generateRooms(_numRooms);
 	}
 	
+	public House(Room[] rooms) {
+		_numRooms = rooms.length;
+		_rooms = rooms;
+	}
+	
 	public String getCurrentRoomInfo() {
 		if (_currentRoom < 0 || _currentRoom >= _numRooms) {
 			_currentRoom = 0;
@@ -30,8 +35,10 @@ public class House {
 		_currentRoom -= 1;
 	}
 	
-	public void look(Player player) {
-		Room room = _rooms[_currentRoom];
+	public void look(Player player, Room room) {
+		if (room == null) {
+			room = _rooms[_currentRoom];
+		}
 		if (room.hasItem()) {
 			System.out.println("There might be something here...");
 			if (room.hasCoffee()) {

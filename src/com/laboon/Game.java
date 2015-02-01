@@ -19,7 +19,7 @@ public class Game {
 		} else if (move.equalsIgnoreCase("S")) {
 			_house.moveSouth();
 		} else if (move.equalsIgnoreCase("L")) {
-			_house.look(_player);
+			_house.look(_player, null);
 		} else if (move.equalsIgnoreCase("I")) {
 			_player.showInventory();
 		} else if (move.equalsIgnoreCase("D")) {
