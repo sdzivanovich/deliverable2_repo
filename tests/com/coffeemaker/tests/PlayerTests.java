@@ -72,7 +72,7 @@ public class PlayerTests
 		subject.getCream();
 		subject.getSugar();
 		
-		assertTrue(subject.hasAllItems());
+		assertTrue(subject.drink());
 	}
 
 }
