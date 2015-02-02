@@ -148,5 +148,64 @@ public class HouseTests
         subject.moveNorth();
         assertEquals(description, subject.getCurrentRoomInfo());
     }
+    
+    @Test
+    // Verify that moveNorth will move the player to the next room
+    // when the current room has a North door.
+    public void moveNorthMovesPlayerToNorthernRoom()
+    {
+        Room originalRoom = mock(Room.class);
+        when(originalRoom.northExit()).thenReturn(true);
+        when(originalRoom.getDescription()).thenReturn("wrong description");
+        
+        Room northernRoom = mock(Room.class);
+        when(northernRoom.getDescription()).thenReturn("right description");
+        
+        Room[] rooms = {originalRoom, northernRoom};
+        House subject = new House(rooms);
+        
+        assertEquals("wrong description", subject.getCurrentRoomInfo());
+        subject.moveNorth();
+        assertEquals("right description", subject.getCurrentRoomInfo());        
+    }
+    
+    @Test 
+    // Verify that moveSouth when the current room has no South door
+    // does not change the current room. 
+    public void moveSouthDoesNotChangeRoomWhenRoomHasNoSouthernDoor()
+    {
+        Room room = mock(Room.class);
 
+        String description = "a dummy description";
+        when(room.getDescription()).thenReturn(description);
+        when(room.southExit()).thenReturn(false);
+
+        Room[] rooms = { room };
+        House subject = new House(rooms);
+
+        assertEquals(description, subject.getCurrentRoomInfo());
+        subject.moveSouth();
+        assertEquals(description, subject.getCurrentRoomInfo());
+    }
+    
+    @Test
+    // Verify that moveSouth will move the player to the southern room
+    // when the current room has a South door.
+    public void moveSouthMovesPlayerToSouthernRoom()
+    {
+        Room originalRoom = mock(Room.class);
+        when(originalRoom.getDescription()).thenReturn("right description");
+        
+        Room southernRoom = mock(Room.class);
+        when(southernRoom.southExit()).thenReturn(true);
+        when(southernRoom.getDescription()).thenReturn("wrong description");
+        
+        Room[] rooms = {originalRoom, southernRoom};
+        House subject = new House(rooms);
+        
+        subject.moveNorth();
+        assertEquals("wrong description", subject.getCurrentRoomInfo());
+        subject.moveSouth();
+        assertEquals("right description", subject.getCurrentRoomInfo());        
+    }
 }
