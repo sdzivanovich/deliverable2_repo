@@ -208,4 +208,24 @@ public class HouseTests
         subject.moveSouth();
         assertEquals("right description", subject.getCurrentRoomInfo());        
     }
+
+    @Test
+    // Verifies that the look method will inspect the currently occupied Room
+    // in the House when the Room argument is null.
+    public void lookInspectsCurrentRoomWhenNoRoomIsProvided()
+    {
+        Room room = mock(Room.class);
+        when(room.hasItem()).thenReturn(false);
+        when(room.getDescription()).thenReturn("dummy");
+
+        Room[] rooms = { room };
+        House subject = new House(rooms);
+
+        Player player = new Player();
+
+        subject.look(player, null);
+
+        // House should have called hasItem on the current room.
+        verify(room).hasItem();
+    }
 }
