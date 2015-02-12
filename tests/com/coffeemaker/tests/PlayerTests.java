@@ -10,7 +10,7 @@ public class PlayerTests
 {
 
     @Test
-    // Verifies that the hasAllItems method returns true after each of
+    // Verify that the hasAllItems method returns true after each of
     // the individual items have been required.
     public void playerHasAllItemsAfterGettingEachItem() 
     {
@@ -24,7 +24,7 @@ public class PlayerTests
     }
 
     @Test
-    // verifies that the hasAllItems method returns false if the player
+    // Verify that the hasAllItems method returns false if the player
     // has not acquired any items.
     public void playerDoesNotHaveItemsIfNoneHaveBeenAcquired()
     {
@@ -33,7 +33,7 @@ public class PlayerTests
     }
 
     @Test
-    // verifies that the hasAllItems method returns false if the player
+    // Verify that the hasAllItems method returns false if the player
     // has acquired some items, but not every item.
     public void playerDoesNotHaveAllItemsIfOnlySomeHaveBeenAcquired()
     {
@@ -43,7 +43,7 @@ public class PlayerTests
     }
 
     @Test
-    // Verifies that the drink method returns false if called while
+    // Verify that the drink method returns false if called while
     // the player does not have all of the items.
     public void playerLosesIfDrinkingWithNoItems() 
     {
@@ -52,17 +52,7 @@ public class PlayerTests
     }
 
     @Test
-    // Verifies that the drink method returns false if called while
-    // the player only has some, but not all, of the items
-    public void playerLosesIfDrinkingWithOnlySomeItems()
-    {
-        Player subject = new Player();
-        subject.getSugar();
-        assertFalse(subject.drink());
-    }
-
-    @Test
-    // Verifies that the drink method returns true if called while
+    // Verify that the drink method returns true if called while
     // the player has all three items.
     public void playerWinsIfDrinkingWithAllItems()
     {
@@ -74,5 +64,66 @@ public class PlayerTests
 
         assertTrue(subject.drink());
     }
+    
+    @Test
+    // Verify that the drink method returns false if called
+    // while the player only has coffee.
+    public void playerLosesIfDrinkingWithOnlyCoffee()
+    {
+        Player subject = new Player(false, false, true);  
+        
+        assertFalse(subject.drink());
+    }
+    
+    @Test
+    // Verify that the drink method returns false if called
+    // while the player only has coffee and cream.
+    public void playerLosesIfDrinkingWithOnlyCoffeeAndCream()
+    {
+        Player subject = new Player(false, true, true);
+        
+        assertFalse(subject.drink());
+    }
+    
+    @Test
+    // Verify that the drink method returns false if called
+    // while the player only has cream.
+    public void playerLosesIfDrinkingWithOnlyCream()
+    {
+        Player subject = new Player(false, true, false);
+        
+        assertFalse(subject.drink());
+    }
+    
+    @Test
+    // Verify that the drink method returns false if called
+    // while the player only has cream and sugar.
+    public void playerLosesIfDrinkingWithOnlyCreamAndSugar()
+    {
+        Player subject = new Player(true, true, false);
+        
+        assertFalse(subject.drink());
+    }
+    
+    @Test
+    // Verify that the drink method returns false if called while
+    // the player only has sugar.
+    public void playerLosesIfDrinkingWithOnlySugar()
+    {
+        Player subject = new Player(true, false, false);
+        
+        assertFalse(subject.drink());
+    }
+    
+    @Test
+    // Verify that the drink method returns false if called while
+    // the player only has sugar and coffee.
+    public void playerLosesIfDrinkingWithOnlySugarAndCoffee()
+    {
+        Player subject = new Player(true, false, true);
+        
+        assertFalse(subject.drink());
+    }
+
 
 }
