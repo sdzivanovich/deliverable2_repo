@@ -153,7 +153,7 @@ public class GameTests {
     }
     
     @Test
-    // Verify that the game returns 0 when the string 'I' or 'i'
+    // Verify that the game returns 0 when the string 'H' or 'h'
     // is passed to the doSomething method.
     public void doSomethingReturnsZeroWhenHelpCommandIsGiven()
     {
