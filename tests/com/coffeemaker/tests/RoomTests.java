@@ -10,7 +10,7 @@ public class RoomTests
 {
 
     @Test
-    // Verifies that the hasItem method returns false if the
+    // Verify that the hasItem method returns false if the
     // room was initialized to have no items.
     public void roomDoesNotHaveItemIfNotInitializedWithAnyItem()
     {
@@ -37,7 +37,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies that the hasCream method returns true if the 
+    // Verify that the hasCream method returns true if the 
     // room was initialized to have cream.
     public void roomHasCreamIfInitializedWithCream() 
     {
@@ -46,7 +46,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies that the hasSugar method returns true if the 
+    // Verify that the hasSugar method returns true if the 
     // room was initialized to have sugar.
     public void roomHasSugarIfInitializedWithSugar() 
     {
@@ -55,7 +55,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies that the northExit method returns true if the 
+    // Verify that the northExit method returns true if the 
     // room was initialized to have a northExit.
     public void roomHasNorthExitIfInitializedWithNorthExit() 
     {
@@ -64,7 +64,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies that the southExit method returns true if the 
+    // Verify that the southExit method returns true if the 
     // room was initialized to have a southExit.
     public void roomHasSouthExitIfInitializedWithSouthExit() 
     {
@@ -73,7 +73,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies getDescription does not return null.
+    // Verify getDescription does not return null.
     public void roomDescriptionIsNonNull()
     {
         Room subject = new Room(false, false, false, false, false);
@@ -81,7 +81,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies getDescription returns a String that indicates a door
+    // Verify getDescription returns a String that indicates a door
     // that leads north is present, when the room was initialized 
     // to have a northern door.
     public void roomDescriptionIndicatesNorthDoorWhenRoomHasNorthDoor()
@@ -93,7 +93,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies getDescription returns a String that indicates a door
+    // Verify getDescription returns a String that indicates a door
     // that leads south is present, when the room was initialized 
     // to have a southern door.
     public void roomDescriptionIndicatesSouthDoorWhenRoomHasSouthDoor()
@@ -105,7 +105,7 @@ public class RoomTests
     }
 
     @Test
-    // Verifies getDescription returns a String that does not indicate
+    // Verify getDescription returns a String that does not indicate
     // south/north doors existed when the room was initialized without
     // south/north doors.
     public void roomDescriptionDoesNotIndicateNonExistentDoorsExist()
@@ -117,5 +117,14 @@ public class RoomTests
         assertFalse(description.contains("door leads South"));
     }
 
-
+    @Test
+    // Verify that two different Rooms return different Strings from the
+    // method getDescription.
+    public void roomsHaveUniqueDescriptions()
+    {
+        Room subject1 = new Room(false, false, false, false, false);
+        Room subject2 = new Room(false, false, false, false, false);
+        
+        assertNotEquals(subject1.getDescription(), subject2.getDescription());
+    }
 }
